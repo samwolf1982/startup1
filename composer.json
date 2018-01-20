@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "budyaga/yii2-users": "*",
-        "yiisoft/yii2-mongodb": "~2.1.0"
+        "yiisoft/yii2-mongodb": "~2.1.0",
+        "electrolinux/phpquery": "^0.9.6"
 
     },
     "require-dev": {

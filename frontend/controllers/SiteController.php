@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\mongodb\Query;
 
+
 /**
  * Site controller
  */
@@ -73,6 +74,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
 
         $collection = Yii::$app->db1->getCollection('rooms');
        // $collection->insert(['name' => 'John Smith', 'status' => 1]);
