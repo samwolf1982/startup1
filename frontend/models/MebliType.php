@@ -5,21 +5,21 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "currency_type".
+ * This is the model class for table "mebli_type".
  *
  * @property int $id
  * @property string $name
  *
  * @property Objects[] $objects
  */
-class CurrencyType extends \yii\db\ActiveRecord
+class MebliType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'currency_type';
+        return 'mebli_type';
     }
 
     /**
@@ -48,6 +48,6 @@ class CurrencyType extends \yii\db\ActiveRecord
      */
     public function getObjects()
     {
-        return $this->hasMany(Objects::className(), ['currency_type_id' => 'id']);
+        return $this->hasMany(Objects::className(), ['mebli_type_id' => 'id']);
     }
 }

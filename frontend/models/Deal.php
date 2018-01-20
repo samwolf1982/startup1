@@ -8,8 +8,7 @@ use Yii;
  * This is the model class for table "deal".
  *
  * @property int $id
- * @property string $deal_name
- * @property string $deal_table_name
+ * @property string $name
  *
  * @property Objects[] $objects
  */
@@ -29,8 +28,7 @@ class Deal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['deal_name', 'deal_table_name'], 'required'],
-            [['deal_name', 'deal_table_name'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,8 +39,7 @@ class Deal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'deal_name' => 'Deal Name',
-            'deal_table_name' => 'Deal Table Name',
+            'name' => 'Name',
         ];
     }
 
