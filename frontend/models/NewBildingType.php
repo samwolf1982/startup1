@@ -8,11 +8,11 @@ use Yii;
  * This is the model class for table "new_bilding_type".
  *
  * @property int $id
- * @property int $date_of_issue_quarter
- * @property int $date_of_issue_year
- * @property string $name_gk_corpus
- * @property string $developer
- * @property string $url
+ * @property int $date_of_issue_quarter Дата сдачи
+ * @property int $date_of_issue_year Год
+ * @property string $name_gk_corpus Название ЖК, корпус
+ * @property string $developer Застройщик
+ * @property string $url Проектная декларация
  *
  * @property Objects[] $objects
  */
@@ -33,8 +33,7 @@ class NewBildingType extends \yii\db\ActiveRecord
     {
         return [
             [['date_of_issue_quarter', 'date_of_issue_year'], 'integer'],
-            [['url'], 'string'],
-            [['name_gk_corpus', 'developer'], 'string', 'max' => 255],
+            [['name_gk_corpus', 'developer', 'url'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,11 +44,11 @@ class NewBildingType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'date_of_issue_quarter' => 'Date Of Issue Quarter',
-            'date_of_issue_year' => 'Date Of Issue Year',
-            'name_gk_corpus' => 'Name Gk Corpus',
-            'developer' => 'Developer',
-            'url' => 'Url',
+            'date_of_issue_quarter' => 'Дата сдачи',
+            'date_of_issue_year' => 'Год',
+            'name_gk_corpus' => 'Название ЖК, корпус',
+            'developer' => 'Застройщик',
+            'url' => 'Проектная декларация',
         ];
     }
 

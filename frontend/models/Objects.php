@@ -8,32 +8,33 @@ use Yii;
  * This is the model class for table "objects".
  *
  * @property int $id
- * @property int $user_id
- * @property int $deal_type_id
- * @property int $object_type_id
- * @property int $property_type_id
- * @property string $address_text
- * @property string $country
- * @property int $state
- * @property int $sity
- * @property string $street
- * @property string $number_street
- * @property string $zip
+ * @property int $user_id Пользователь
+ * @property int $deal_type_id Тип сделки
+ * @property int $object_type_id Тип объекта
+ * @property int $property_type_id Собственник
+ * @property string $address_text Адрес
+ * @property string $country Cтрана
+ * @property string $state Область
+ * @property string $sity Город
+ * @property string $street Улица
+ * @property string $number_street Номер дома
+ * @property string $district Район
+ * @property string $zip Почтовый индекс
  * @property double $lat
  * @property double $lng
- * @property string $price
- * @property int $currency_type_id
- * @property double $square_total
- * @property double $square_live
- * @property double $square_kitchen
- * @property int $rooms_total
- * @property int $rooms_divided
- * @property int $rooms_for_sale
- * @property int $floor
- * @property int $floors
- * @property int $room_type_id
- * @property int $base_type_id
- * @property int $repairs_type_id
+ * @property string $price Цена за весь объект
+ * @property int $currency_type_id Валюта
+ * @property double $square_total Общая площадь
+ * @property double $square_live Жилая площадь
+ * @property double $square_kitchen Кухня
+ * @property int $rooms_total Комнат всего
+ * @property int $rooms_divided Комнат раздельно
+ * @property int $rooms_for_sale Комнат продается
+ * @property int $floor Этаж
+ * @property int $floors Этажей
+ * @property int $room_type_id Тип квартиры
+ * @property int $base_type_id Тип здания
+ * @property int $repairs_type_id Ремонт
  * @property int $new_bilding_type_id
  * @property string $video_json
  * @property int $heating_type_id
@@ -138,8 +139,8 @@ use Yii;
  * @property int $storage_step_of_collumn
  * @property int $storage_power
  * @property int $status
- * @property int $created_at
- * @property int $updated_at
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property BalkoonType $balkoonType
  * @property BaseType $baseType
@@ -190,11 +191,12 @@ class Objects extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'deal_type_id', 'object_type_id', 'state', 'sity', 'street', 'created_at', 'updated_at'], 'required'],
-            [['user_id', 'deal_type_id', 'object_type_id', 'property_type_id', 'state', 'sity', 'currency_type_id', 'rooms_total', 'rooms_divided', 'rooms_for_sale', 'floor', 'floors', 'room_type_id', 'base_type_id', 'repairs_type_id', 'new_bilding_type_id', 'heating_type_id', 'window_view_type_id', 'restroom_type_id', 'balkoon_type_id', 'ceiling_height', 'extra_ipoteka', 'extra_rastrochka', 'extra_net', 'extra_phone', 'extra_tv', 'extra_invalid', 'extra_lift', 'extra_clift', 'extra_concierge', 'extra_sequrity', 'extra_musoroprovod', 'extra_gas', 'extra_ogoroza', 'extra_condicioner', 'extra_wash_masine', 'extra_mebel', 'extra_holodilnik', 'extra_wifi', 'extra_with_animal', 'extra_with_children', 'extra_garage', 'extra_water_pull', 'extra_boiler', 'extra_mansandra', 'extra_propiska', 'extra_forest', 'extra_water', 'extra_year_access', 'extra_repairs_owner', 'extra_change_provider', 'extra_restorane', 'extra_fitnes', 'extra_bank', 'extra_bankomat', 'extra_supermarket', 'extra_full_access', 'extra_video_monitoring', 'extra_control_access', 'extra_equipment', 'extra_separate_entrance', 'extra_сrane', 'extra_custom_house', 'extra_rail_conect', 'extra_parking_track', 'extra_port', 'rooms_rent', 'sleep_place', 'time_rent_type_id', 'period', 'square_place', 'obremeneniya', 'min_to_rail_station', 'rail_station_min_type', 'distance_to_forest', 'distance_to_water', 'house_type_id', 'mebli_type_id', 'otopleniye_type_id', 'electrification_type_id', 'gasfication_type_id', 'waterfication_type_id', 'cloakfication_type_id', 'relief_type_id', 'forma_place_type_id', 'purpose_of_land_type_id', 'nds', 'parko_place_count', 'parko_place_type', 'year', 'using_type_id', 'bilding_type_id', 'sub_rent', 'cokol', 'stock_type_id', 'storage_mode_type_id', 'storage_type_id', 'storage_floar_type_id', 'storage_unload_type_id', 'storage_gate_type_id', 'storage_access_to_road_type_id', 'storage_load_on_floor', 'storage_step_of_collumn', 'storage_power', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['address_text', 'header', 'description', 'url'], 'string'],
+            [['user_id', 'deal_type_id', 'object_type_id', 'address_text', 'country', 'state', 'sity', 'street', 'number_street', 'price', 'currency_type_id', 'square_total', 'created_at', 'updated_at'], 'required'],
+            [['user_id', 'deal_type_id', 'object_type_id', 'property_type_id', 'currency_type_id', 'rooms_total', 'rooms_divided', 'rooms_for_sale', 'floor', 'floors', 'room_type_id', 'base_type_id', 'repairs_type_id', 'new_bilding_type_id', 'heating_type_id', 'window_view_type_id', 'restroom_type_id', 'balkoon_type_id', 'ceiling_height', 'extra_ipoteka', 'extra_rastrochka', 'extra_net', 'extra_phone', 'extra_tv', 'extra_invalid', 'extra_lift', 'extra_clift', 'extra_concierge', 'extra_sequrity', 'extra_musoroprovod', 'extra_gas', 'extra_ogoroza', 'extra_condicioner', 'extra_wash_masine', 'extra_mebel', 'extra_holodilnik', 'extra_wifi', 'extra_with_animal', 'extra_with_children', 'extra_garage', 'extra_water_pull', 'extra_boiler', 'extra_mansandra', 'extra_propiska', 'extra_forest', 'extra_water', 'extra_year_access', 'extra_repairs_owner', 'extra_change_provider', 'extra_restorane', 'extra_fitnes', 'extra_bank', 'extra_bankomat', 'extra_supermarket', 'extra_full_access', 'extra_video_monitoring', 'extra_control_access', 'extra_equipment', 'extra_separate_entrance', 'extra_сrane', 'extra_custom_house', 'extra_rail_conect', 'extra_parking_track', 'extra_port', 'rooms_rent', 'sleep_place', 'time_rent_type_id', 'period', 'square_place', 'obremeneniya', 'min_to_rail_station', 'rail_station_min_type', 'distance_to_forest', 'distance_to_water', 'house_type_id', 'mebli_type_id', 'otopleniye_type_id', 'electrification_type_id', 'gasfication_type_id', 'waterfication_type_id', 'cloakfication_type_id', 'relief_type_id', 'forma_place_type_id', 'purpose_of_land_type_id', 'nds', 'parko_place_count', 'parko_place_type', 'year', 'using_type_id', 'bilding_type_id', 'sub_rent', 'cokol', 'stock_type_id', 'storage_mode_type_id', 'storage_type_id', 'storage_floar_type_id', 'storage_unload_type_id', 'storage_gate_type_id', 'storage_access_to_road_type_id', 'storage_load_on_floor', 'storage_step_of_collumn', 'storage_power', 'status'], 'integer'],
             [['lat', 'lng', 'price', 'square_total', 'square_live', 'square_kitchen', 'pledge', 'comission_client', 'comission_agent', 'square_hall'], 'number'],
-            [['country', 'street', 'number_street', 'zip', 'video_json', 'type_serial_bilding', 'status_bild', 'kadastr_number', 'rail_station', 'poselok_name', 'bissnes_center_name'], 'string', 'max' => 255],
+            [['header', 'description', 'url'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['address_text', 'country', 'state', 'sity', 'street', 'number_street', 'district', 'zip', 'video_json', 'type_serial_bilding', 'status_bild', 'kadastr_number', 'rail_station', 'poselok_name', 'bissnes_center_name'], 'string', 'max' => 255],
             [['balkoon_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => BalkoonType::className(), 'targetAttribute' => ['balkoon_type_id' => 'id']],
             [['base_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => BaseType::className(), 'targetAttribute' => ['base_type_id' => 'id']],
             [['bilding_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => BildingType::className(), 'targetAttribute' => ['bilding_type_id' => 'id']],
@@ -237,32 +239,33 @@ class Objects extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'deal_type_id' => 'Deal Type ID',
-            'object_type_id' => 'Object Type ID',
-            'property_type_id' => 'Property Type ID',
-            'address_text' => 'Address Text',
-            'country' => 'Country',
-            'state' => 'State',
-            'sity' => 'Sity',
-            'street' => 'Street',
-            'number_street' => 'Number Street',
-            'zip' => 'Zip',
+            'user_id' => 'Пользователь',
+            'deal_type_id' => 'Тип сделки',
+            'object_type_id' => 'Тип объекта',
+            'property_type_id' => 'Собственник',
+            'address_text' => 'Адрес',
+            'country' => 'Cтрана',
+            'state' => 'Область',
+            'sity' => 'Город',
+            'street' => 'Улица',
+            'number_street' => 'Номер дома',
+            'district' => 'Район',
+            'zip' => 'Почтовый индекс',
             'lat' => 'Lat',
             'lng' => 'Lng',
-            'price' => 'Price',
-            'currency_type_id' => 'Currency Type ID',
-            'square_total' => 'Square Total',
-            'square_live' => 'Square Live',
-            'square_kitchen' => 'Square Kitchen',
-            'rooms_total' => 'Rooms Total',
-            'rooms_divided' => 'Rooms Divided',
-            'rooms_for_sale' => 'Rooms For Sale',
-            'floor' => 'Floor',
-            'floors' => 'Floors',
-            'room_type_id' => 'Room Type ID',
-            'base_type_id' => 'Base Type ID',
-            'repairs_type_id' => 'Repairs Type ID',
+            'price' => 'Цена за весь объект',
+            'currency_type_id' => 'Валюта',
+            'square_total' => 'Общая площадь',
+            'square_live' => 'Жилая площадь',
+            'square_kitchen' => 'Кухня',
+            'rooms_total' => 'Комнат всего',
+            'rooms_divided' => 'Комнат раздельно',
+            'rooms_for_sale' => 'Комнат продается',
+            'floor' => 'Этаж',
+            'floors' => 'Этажей',
+            'room_type_id' => 'Тип квартиры',
+            'base_type_id' => 'Тип здания',
+            'repairs_type_id' => 'Ремонт',
             'new_bilding_type_id' => 'New Bilding Type ID',
             'video_json' => 'Video Json',
             'heating_type_id' => 'Heating Type ID',

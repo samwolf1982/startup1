@@ -24,19 +24,20 @@ class m180119_215606_create_objects_table extends Migration
         //таблица user
         $this->createTable('{{%objects}}', [
             'id' => Schema::TYPE_PK,
-            'user_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'deal_type_id' => Schema::TYPE_INTEGER . ' NOT NULL',// тип сделки
-            'object_type_id' => Schema::TYPE_INTEGER . ' NOT NULL', //  квартира помещение дома склады от переключения меняем форму !!
+            'user_id' => $this->integer()->notNull()->comment('Пользователь'),
+            'deal_type_id' => $this->integer()->notNull()->comment('Тип сделки'),// тип сделки Тип объекта
+            'object_type_id' =>$this->integer()->notNull()->comment('Тип объекта'), //  квартира помещение дома склады от переключения меняем форму !! Тип объекта
             //'info_type_id' => Schema::TYPE_INTEGER . ' NOT NULL',   // контактние даніе  ВСЕ ДАНЫЕ В USER  ДОБАВИТЬ
-            'property_type_id' => $this->smallInteger()->defaultValue(0)->null(),// тип собствености 0 1- cобсвтеник 2 агент
+            'property_type_id' => $this->smallInteger()->null()->comment('Собственник'),// тип собствености 0 1- cобсвтеник 2 агент
 
-            'address_text'=>$this->text()->null(), // google autocomplete
-            'country'=>$this->string()->null(),
-            'state' => Schema::TYPE_INTEGER. ' NOT NULL', // область
-            'sity' => Schema::TYPE_INTEGER. ' NOT NULL', // город
-            'street' => Schema::TYPE_STRING. ' NOT NULL', // улица,
-            'number_street' => Schema::TYPE_STRING. ' NULL', // номер дома
-            'zip' => Schema::TYPE_STRING. ' NULL', // номер дома
+            'address_text'=>$this->string()->notNull()->comment("Адрес"), // google autocomplete
+            'country'=>$this->string()->notNull()->comment("Cтрана"),
+            'state' => $this->string()->notNull()->comment("Область"), // область
+            'sity' =>  $this->string()->notNull()->comment("Город"), // город
+            'street' => $this->string()->notNull()->comment("Улица"), // улица,
+            'number_street' =>$this->string()->notNull()->comment("Номер дома"), // Номер дома
+            'district' =>$this->string()->null()->comment("Район"), // район "sublocality_level_1" googlemap
+            'zip' => $this->string()->null()->comment("Почтовый индекс"), // почтовый индекс
 
             //'district' => Schema::TYPE_INTEGER. ' NOT NULL', // район пригород село       ????????????????? если из гугла то не нужно
 
@@ -50,21 +51,21 @@ class m180119_215606_create_objects_table extends Migration
 
 
 
-            'price'=>$this->decimal(19,4)->null(),
-            'currency_type_id'=>$this->integer()->null(), // dollar euro rub uah
+            'price'=>$this->decimal(19,4)->notNull()->comment('Цена за весь объект'),
+            'currency_type_id'=>$this->integer()->notNull()->comment('Валюта'), // dollar euro rub uah
 
-            'square_total'=>$this->float()->null(),
-            'square_live'=>$this->float()->null(),
-            'square_kitchen'=>$this->float()->null(),
-            'rooms_total'=>$this->integer()->null(), //количество комнат
-            'rooms_divided'=>$this->integer()->null(), // комнат раздельно
-            'rooms_for_sale'=>$this->integer()->null(), //количество комнат для продажы
-            'floor'=>$this->integer()->null(), //єтаж
-            'floors'=>$this->integer()->null(), //єтажность
+            'square_total'=>$this->float()->notNull()->comment('Общая площадь'),
+            'square_live'=>$this->float()->null()->comment('Жилая площадь'),
+            'square_kitchen'=>$this->float()->null()->comment('Кухня'),
+            'rooms_total'=>$this->integer()->null()->comment("Комнат всего"), //количество комнат
+            'rooms_divided'=>$this->integer()->null()->comment("Комнат раздельно"), // комнат раздельно
+            'rooms_for_sale'=>$this->integer()->null()->comment('Комнат продается'), //количество комнат для продажы
+            'floor'=>$this->integer()->null()->comment("Этаж"), //єтаж
+            'floors'=>$this->integer()->null()->comment("Этажей"), //єтажность
 
-            'room_type_id'=>$this->integer()->null(), //тип квартиры студия хрущевска апартаменыт и тд
-            'base_type_id'=>$this->integer()->null(), //тип здания хрушевска новостройка панель и тд
-            'repairs_type_id'=>$this->integer()->null(), //тип ремонта евро авторский побелка косметический и тд
+            'room_type_id'=>$this->integer()->null()->comment("Тип квартиры"), //тип квартиры студия хрущевска апартаменыт и тд
+            'base_type_id'=>$this->integer()->null()->comment("Тип здания"), //тип здания хрушевска новостройка панель и тд
+            'repairs_type_id'=>$this->integer()->null()->comment("Ремонт"), //тип ремонта евро авторский побелка косметический и тд
 
 
             'new_bilding_type_id'=>$this->integer()->null(), //новостройка Новый дом (дом сдан) =[]   Долевое (дом не сдан)=[]  // Дата сдачи  Название ЖК, корпус  Застройщик Проектная декларация  https://zipal.ru/object/create
@@ -174,7 +175,7 @@ class m180119_215606_create_objects_table extends Migration
             'kadastr_number'=>$this->string()->null(), //кадастровый номер
             'rail_station'=>$this->string()->null(), //жд станция
             'min_to_rail_station'=>$this->smallInteger()->null(), // растояние до жд станция минуты
-            'rail_station_min_type'=>$this->boolean()->defaultValue(0)->notNull(), // пешком авто
+            'rail_station_min_type'=>$this->boolean()->defaultValue(0)->null(), // пешком авто
             'distance_to_forest'=>$this->smallInteger()->null(), // растояние до леса
             'distance_to_water'=>$this->smallInteger()->null(), // растояние до водоема
             'poselok_name'=>$this->string()->null(), // название поселка
@@ -195,11 +196,11 @@ class m180119_215606_create_objects_table extends Migration
           //  house_type mebli_type otopleniye_type electrification_type gasfication_type waterfication_type cloakfication_type relief_type forma_place_type purpose_of_land_type
 
             // помещение
-            'nds'=>$this->boolean()->defaultValue(0)->notNull(),// ндс
+            'nds'=>$this->boolean()->defaultValue(0)->null(),// ндс
             'square_hall'=>$this->float()->null(),// площадь зала
             'bissnes_center_name'=>$this->string()->null(),// бизнесс ценетр
             'parko_place_count'=>$this->integer()->null(),// парко мест
-            'parko_place_type'=>$this->boolean()->defaultValue(0)->notNull(),// тип парковки наземная подсземная
+            'parko_place_type'=>$this->boolean()->defaultValue(0)->null(),// тип парковки наземная подсземная
             'year'=>$this->integer()->null(),// год
 
             'using_type_id'=>$this->integer()->null(),// тип использования любой офис аптека ....
@@ -207,8 +208,8 @@ class m180119_215606_create_objects_table extends Migration
 
 
             //помещение аренда
-            'sub_rent'=>$this->boolean()->defaultValue(0)->notNull(),// ндс
-            'cokol'=>$this->boolean()->defaultValue(0)->notNull(),     //Цокольный этаж
+            'sub_rent'=>$this->boolean()->defaultValue(0)->null(),// ндс
+            'cokol'=>$this->boolean()->defaultValue(0)->null(),     //Цокольный этаж
 
 
 
@@ -230,8 +231,8 @@ class m180119_215606_create_objects_table extends Migration
 
 
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0', //
-            'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'created_at' => $this->date() . ' NOT NULL',
+            'updated_at' => $this->date() . ' NOT NULL',
 
         ], $tableOptions);
 
@@ -244,7 +245,7 @@ class m180119_215606_create_objects_table extends Migration
         //таблица deal продаже аренда
         $this->createTable('{{%object_type}}', [
             'id' => Schema::TYPE_PK,
-            '_name' => $this->string()->null(),
+            'name' => $this->string()->null(),
         ], $tableOptions);
 
         //таблица currency_type dollar euro ...
@@ -273,11 +274,11 @@ class m180119_215606_create_objects_table extends Migration
         // сохранять сначала потом уже давать в обект
         $this->createTable('{{%new_bilding_type}}', [
             'id' => Schema::TYPE_PK,
-            'date_of_issue_quarter' => $this->smallInteger()->null(), //1 2 3 4
-            'date_of_issue_year' => $this->smallInteger()->null(),
-            'name_gk_corpus' => $this->string()->null(), // Название ЖК, корпус
-            'developer' => $this->string()->null(), // застройщик,
-            'url'=>$this->text()->null(), //Проектная декларация
+            'date_of_issue_quarter' => $this->smallInteger()->null()->comment("Дата сдачи"), //1 2 3 4
+            'date_of_issue_year' => $this->smallInteger()->null()->comment("Год"),
+            'name_gk_corpus' => $this->string()->null()->comment("Название ЖК, корпус"), // Название ЖК, корпус
+            'developer' => $this->string()->null()->comment("Застройщик"), // застройщик,
+            'url'=>$this->string()->null()->comment("Проектная декларация"), //Проектная декларация
         ], $tableOptions);
 
 

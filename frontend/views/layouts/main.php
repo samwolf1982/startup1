@@ -23,6 +23,12 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!--[if lt IE 9]><script src="js/respond.min.js"></script><![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient, .nicEdit-container {filter: none !important;}
+    </style>
+    <![endif]-->
 </head>
 <body>
 <?php $this->beginBody() ?>

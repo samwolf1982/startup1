@@ -1,5 +1,6 @@
 <?php
 
+use frontend\assets\ObjectAsset;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -9,7 +10,9 @@ use yii\grid\GridView;
 
 $this->title = 'Objects';
 $this->params['breadcrumbs'][] = $this->title;
+ObjectAsset::register($this);
 ?>
+
 <div class="objects-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
